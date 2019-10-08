@@ -9,7 +9,6 @@ var result = 100;
 
 console.log(result);
 
-
 // 호이스팅
 console.log(hoisting); // 선언문만 먼저 실행하기 때문에 할당한 값이 안나온다. 할당문은 런타임때 실행된다.
 
@@ -25,6 +24,29 @@ var z = y;
 y = x;
 x = z;
 
-
-
 console.log(x, y);
+
+
+// if문과 삼항연산자를 비교
+
+var x = 2;
+var result;
+
+x % 2 ? result = '홀수' : result = '짝수';
+
+console.log(result);
+
+// 삼항연산자는 표현식인 문으로 값으로 평가할 수 있기 때문에 더 간결하게 쓸 수 있다.
+result = x % 2 ? '홀수' : '짝수';
+
+console.log(result);
+
+for (i = 1; i < 11; i++) {
+  if (i % 2) {
+    console.log(i);
+  }
+
+  if (i % 3 === 0) {
+    console.log(i);
+  }
+}
