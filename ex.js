@@ -41,12 +41,19 @@ result = x % 2 ? '홀수' : '짝수';
 
 console.log(result);
 
-for (i = 1; i < 11; i++) {
-  if (i % 2) {
-    console.log(i);
-  }
 
-  if (i % 3 === 0) {
-    console.log(i);
-  }
+for (var i = 1; i <= 10; i++) {
+  // 홀수
+  if (i % 2) console.log(i);
+
+  // 2와 3의 배수
+  if (i % 3 === 0 && i % 2 === 0) console.log(i);
+}
+
+for (var i = 10; i > 0; i--) {
+  // 10부터 1까지
+  console.log(i);
+
+  // 10부터 1까지 중 짝수만
+  if (i % 2 === 0) console.log(i);
 }
