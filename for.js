@@ -22,3 +22,20 @@ for (var i = 1; i <= 5; i++) {
 }
 
 console.log(star);
+
+
+
+// 삼각형 패턴 1
+var line = 5;
+var triangle = '';
+
+for (var i = 1; i <= line; i++) {
+
+  for (var j = 1; j <= line; j++) {
+    // triangle += '*' + temp;
+  }
+
+  triangle += '\n'; // 1라인을 정비 후 줄바꿈을 추가
+}
+
+console.log(triangle);
