@@ -2,7 +2,7 @@
 // 기대값 0, 2, 4, 6, 8
 
 // type1. 할당연산자를 사용하는 방법
-var num = 0;
+let num = 0;
 
 while (num < 10) {
   console.log(num);

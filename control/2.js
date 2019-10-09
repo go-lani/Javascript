@@ -2,13 +2,13 @@
 // 기대값 0, 2, 4, 6, 8
 
 // type.1 증감식을 변경하여 적용
-for (var i = 0; i < 10; i += 2) {
+for (let i = 0; i < 10; i += 2) {
   console.log(i);
 }
 
 console.log('------------------------');
 
 // type.2 if문을 활용하여 적용
-for (var j = 0; j < 10; j++) {
+for (let j = 0; j < 10; j++) {
   if (j % 2 === 0) console.log(j);
 }
