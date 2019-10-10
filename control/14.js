@@ -11,14 +11,13 @@ const line = 5;
 let star = '';
 
 for (let i = 1; i <= line; i++) {
-  // 들여쓰기 영역
-  for (let e = line; e > 0; e--) {
-    if (i < e) star += ' ';
-  }
-
   // 별찍기 영역
-  for (let j = 1; j <= line; j++) {
-    if (i >= j) star += '*';
+  for (let j = line; j > 0; j--) {
+    if (i < j) {
+      star += ' ';
+      continue;
+    }
+    star += '*';
   }
   star += '\n';
 }
