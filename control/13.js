@@ -10,9 +10,17 @@
 const line = 5;
 let star = '';
 
-for (let i = 1; i <= line; i++) {
-  for (let j = 1; j <= line; j++) {
-    if (i <= j) star += '*';
+// for (let i = 1; i <= line; i++) {
+//   for (let j = 1; j <= line; j++) {
+//     if (i <= j) star += '*';
+//   }
+//   star += '\n';
+// }
+// console.log(star);
+
+for (let i = 0; i < line; i++) {
+  for (let j = 0; j < line - i; j++) {
+    star += '*';
   }
   star += '\n';
 }

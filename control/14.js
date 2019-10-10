@@ -10,10 +10,23 @@
 const line = 5;
 let star = '';
 
-for (let i = 1; i <= line; i++) {
+// for (let i = 1; i <= line; i++) {
+//   // 별찍기 영역
+//   for (let j = line; j > 0; j--) {
+//     if (i < j) {
+//       star += ' ';
+//       continue;
+//     }
+//     star += '*';
+//   }
+//   star += '\n';
+// }
+// console.log(star);
+
+for (let i = 0; i < line; i++) {
   // 별찍기 영역
-  for (let j = line; j > 0; j--) {
-    if (i < j) {
+  for (let j = 0; j <= line; j++) {
+    if (j < line - i) {
       star += ' ';
       continue;
     }

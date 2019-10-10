@@ -10,19 +10,37 @@
 const line = 5;
 let star = '';
 
-for (let i = 1; i <= line; i++) {
+// for (let i = 1; i <= line; i++) {
+//   // 별찍기 영역
+//   for (let j = 1; j <= line; j++) {
+//     if (i > j) {
+//       star += ' ';
+//       continue;
+//     }
+//     star += '*'
+//   }
+
+//   // 별 덧 붙이는 영역
+//   for (let k = 1; k <= line; k++) {
+//     if (i < k) star += '*';
+//   }
+//   star += '\n';
+// }
+// console.log(star);
+
+for (let i = 0; i < line; i++) {
   // 별찍기 영역
-  for (let j = 1; j <= line; j++) {
+  for (let j = 0; j < line; j++) {
     if (i > j) {
       star += ' ';
       continue;
     }
-    star += '*'
+    star += '*';
   }
 
   // 별 덧 붙이는 영역
-  for (let k = 1; k <= line; k++) {
-    if (i < k) star += '*';
+  for (let k = 1; k < line - i; k++) {
+    star += '*';
   }
   star += '\n';
 }
