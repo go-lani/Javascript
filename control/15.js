@@ -7,7 +7,7 @@
 //  *******
 // *********
 
-const line = 5;
+const line = 10;
 let star = '';
 
 // for (let i = 1; i <= line; i++) {
@@ -28,18 +28,36 @@ let star = '';
 // }
 // console.log(star);
 
-for (let i = 0; i < line; i++) {
-  // 별찍기 영역
-  for (let j = line; j > 0; j--) {
-    if (i < j - 1) {
-      star += ' ';
-      continue;
-    }
-    star += '*'
+console.log('--------------------------------------');
+
+// for (let i = 0; i < line; i++) {
+//   // 별찍기 영역
+//   for (let j = line; j > 0; j--) {
+//     if (i < j - 1) {
+//       star += ' ';
+//       continue;
+//     }
+//     star += '*'
+//   }
+
+//   // 별 덧 붙이는 영역
+//   for (let k = 0; k < i; k++) {
+//     star += '*';
+//   }
+//   star += '\n';
+// }
+// console.log(star);
+
+console.log('--------------------------------------');
+
+for (let i = 1; i <= line; i++) {
+  // space
+  for (let j = 1; j <= line - i; j++) {
+    star += ' ';
   }
 
-  // 별 덧 붙이는 영역
-  for (let k = 0; k < i; k++) {
+  // star
+  for (let s = 1; s <= i * 2 - 1; s++) {
     star += '*';
   }
   star += '\n';
