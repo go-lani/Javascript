@@ -1,11 +1,11 @@
 const person = {
   firstName: 'Cheol-hwan',
   lastName: 'Lee',
-  get fullName() { // get은 참조, 접근자 프로퍼티의 이름이다. 메소드처럼 쓰면안되고 프로퍼티처럼 써야된다. 인수가 없어야되고 리턴문이 있어야 된다.
-    return `${this.firstName} ${this.lastName}`;
+  get fullName() { //  get은 참조, key는 fullName이다. 접근자 프로퍼티의 이름이다. 메소드처럼 쓰면안되고 프로퍼티처럼 써야된다. 인수가 없어야되고 리턴문이 있어야 된다.
+    return `${this.firstName} ${this.lastName}`; // 내부 메소드 get에 setting된다.
   },
-  set fullName(firstName) { // <- set 인수가 있어야되고 리턴문이 없어야된다.
-    this.firstName = firstName;
+  set fullName(firstName) { // <- set 인수가 있어야되고 리턴문이 없어야된다. key는 fullName이다
+    this.firstName = firstName; // 내부 슬롯 set에 setting된다.
   }
   // getFullName() {
   //   return `${this.firstName} ${this.lastName}`;
@@ -22,7 +22,7 @@ console.log(Object.getOwnPropertyDescriptors(person));
 // XXXX Lee
 // {
 //   firstName: {
-//     value: 'XXXX',
+//     value: 'XXXX', // 내부 슬롯
 //     writable: true,
 //     enumerable: true,
 //     configurable: true
