@@ -4,7 +4,7 @@ function Person(name) {
 
 const me = new Person('Lee');
 console.log(me.toString());
-console.log(me.__proto__); // 부모의 객체를 가리킨다. 비어 있지 않고 constructer를 가지고 있다.
+console.log(me.__proto__); // 부모의 객체를 가리킨다. 비어 있지 않고 constructor를 가지고 있다.
 
 // prototype 위에 Object.prototype 위에 null이 있다
 // 인스턴스는 프로토타입에 상속 받는다 (실질적으로 생성한 생성자 함수가 아니다)
