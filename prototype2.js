@@ -7,7 +7,8 @@
 
 // 패턴 외우기
 const Person = (function () {
-  let _name = ''; // 함수내부에 있기 때문에 함수스코프로 인해 지역변수를 만들어 변경이 불가능하게 한다.
+  let _name = '';
+  // 함수내부에 있기 때문에 함수스코프로 인해 지역변수를 만들어 변경이 불가능하게 한다.
 
   function Person(name) {
     _name = name; // 초기화 되어 _ name에 name을 할당해준다.
@@ -26,11 +27,12 @@ const Person = (function () {
 }()); // 즉시실행 함수로 만든다, 생성자 함수와 prototype을 하나의 캡슐로 묶어준다.
 // Person 함수는 살아있다. const Person이 return으로 Person 함수를 할당 받아서 살아 있다. prototype도 살아있다.
 
-// console.log(_name); 지역변수이기 떄문에 찾아지지가 않는다.
+
 
 const me = new Person('Lee');
-me.name = 'Kim'; // 변경이 가능하여 현재 this는 public 이다.
 
- // 둘의 차이는 this가 다르다.
-me.sayHi(); // prototype에 저장한 후 sayHi가 죽었기때문에 prototype에는 살아있다
-Person.prototype.sayHi();
+me.sayHi(); // Hi Lee.
+// prototype에 저장한 후 sayHi가 죽었기때문에 prototype에는 살아있다
+
+console.log(_name);  //_name is not defined
+// 지역변수이기 때문에 찾을 수 없다.
