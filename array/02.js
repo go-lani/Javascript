@@ -14,7 +14,7 @@ const todos = [
 ];
 
 function getValues(key) {
-  let result = todos.map((todo, i) => todos[i][key]);
+  let result = todos.map(todo => todo[key]);
   return result;
 }
 
