@@ -9,7 +9,7 @@ let todos = [
 
 function removeTodo(id) {
   todos = todos.filter((item) => {
-    return item['id'] !== id;
+    return item.id !== id;
   });
 }
 
