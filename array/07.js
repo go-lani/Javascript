@@ -8,7 +8,7 @@ let todos = [
 ];
 
 function toggleCompletedAll() {
-
+  todos = todos.map(todo => !todo.complted ? { ...todo, completed: true } : todo);
 }
 
 toggleCompletedAll();
