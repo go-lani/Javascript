@@ -8,10 +8,8 @@ let todos = [
 ];
 
 function removeTodo(id) {
-  todos = todos.filter(item => item.id !== id);
+  todos = todos.filter(todo => todo.id !== id);
 }
-
-// filter문의 안에 true인 조건이 안에 들어와야된다.
 
 removeTodo(2);
 

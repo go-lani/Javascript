@@ -11,13 +11,7 @@ const todos = [
 const _todos = todos.slice();
 
 function sortBy(key) {
-  function compare(key) {
-    return function (a, b) {
-      return a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0);
-    }
-  }
-
-  return _todos.sort(compare(key));
+  return _todos.sort((a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0)));
 }
 
 console.log(sortBy('id'));

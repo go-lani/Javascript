@@ -9,17 +9,22 @@ const todos = [
 ];
 
 function toggleCompletedById(id) {
-  const selectedTodo = todos.find(todo => todo.id === id);
-  selectedTodo.completed = !selectedTodo.completed;
-  Object.assign([], todos, selectedTodo);
+  todos.map(todo => todo.id === id ? todo.completed = !todo.completed : todo);
 
+  // Object.assign을 이용한 방식
   // Object.assign(todo, { completed: !completed });  todo를 {}안에 있는 내용과 merge(덮어쓴다) 한다.
-  // map(todo => todo.id === id ? todo.completed = !todo.completed : todo) 조건에 부합하지 않는 객체는 그대로 넘긴다. 만약 todo.completed = !todo.completed를 true 조건에 넣어주게되면 true값이 리턴된다.
+
+  // 스프레드 문법을 이용한 방식
   // map(todo => todo.id === id ? { ...todo, completed : !todo.completed } : todo) 조건에 부합하지 않는 객체는 그대로 넘긴다. 만약 todo.completed = !todo.completed를 true 조건에 넣어주게되면 true값이 리턴된다.
+
+  // 안 좋은 방식
+  // const selectedTodo = todos.find(todo => todo.id === id);
+  // selectedTodo.completed = !selectedTodo.completed;
+  // Object.assign([], todos, selectedTodo);
 }
 
 
-toggleCompletedById(3);
+toggleCompletedById(1);
 console.log(todos);
 
 // console.log(todos);

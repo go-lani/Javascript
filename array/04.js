@@ -8,8 +8,7 @@ let todos = [
 ];
 
 function addTodo(newTodo) {
-  todos.unshift(newTodo);
-  // todos = [newTodo].concat(todos);
+  todos = [newTodo].concat(todos);
   // todos = [newTodo, ...todos];  배열에 요소로 들어가는 것
 }
 
