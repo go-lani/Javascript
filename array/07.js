@@ -12,7 +12,7 @@ function toggleCompletedAll() {
 }
 
 toggleCompletedAll();
-
+ㅎ
 console.log(todos);
 /*
 [
