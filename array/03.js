@@ -8,16 +8,16 @@ const todos = [
   { id: 1, content: 'Javascript', completed: false }
 ];
 
-const todosCopy = todos.slice();
+const _todos = todos.slice();
 
 function sortBy(key) {
   function compare(key) {
     return function (a, b) {
       return a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0);
-    };
+    }
   }
 
-  return todosCopy.sort(compare(key));
+  return _todos.sort(compare(key));
 }
 
 console.log(sortBy('id'));
