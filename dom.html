@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .red  { color: #ff0000; }
+    .blue { color: #0000ff; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Cities</h1>
+    <ul>
+      <li id="one" class="red">Seoul</li>
+      <li id="two" class="red">London</li>
+      <li id="three" class="red">Newyork</li>
+      <li id="four">Tokyo</li>
+    </ul>
+  </div>
+  <script>
+    const ulEle = document.querySelector('ul');
+    const newElem = document.createElement('li');
+// const newElem = document.createElement('<li>test</li>');
+// Uncaught DOMException: Failed to execute 'createElement' on 'Document': The tag name provided ('<li>test</li>') is not a valid name.
+
+// 텍스트 노드를 생성
+const newText = document.createTextNode('Beijing');
+
+newElem.appendChild(newText);
+// 텍스트 노드를 newElem 자식으로 DOM 트리에 추가
+ulEle.appendChild(newElem);
+  </script>
+</body>
+</html>
