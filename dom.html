@@ -36,7 +36,13 @@
 
     document.querySelector('#myId').innerHTML += '<li>aaa</li>'; // 동적 추가
 
+    // 다음요소 찾기
+    const $li = document.querySelector('li');
+    $li.nextElementSibling.style.color = "red";
 
+    // 첫번쨰, 마지막 요소 찾기
+    $ul.firstElementChild.style.color = 'gold';
+    $ul.lastElementChild.style.color = 'skyblue';
 
   </script>
 </body>
