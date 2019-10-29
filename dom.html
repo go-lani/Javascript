@@ -1,37 +1,38 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- 문서형식 선언 -->
 <html lang="ko">
-<head>
+<head> <!-- 브라우저를 위한 정보(메타 데이터) 선언 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    .red  { color: #ff0000; }
-    .blue { color: #0000ff; }
-  </style>
+  <title>DOM</title>
 </head>
-<body>
-  <div>
-    <h1>Cities</h1>
-    <ul>
-      <li id="one" class="red">Seoul</li>
-      <li id="two" class="red">London</li>
-      <li id="three" class="red">Newyork</li>
-      <li id="four">Tokyo</li>
-    </ul>
-  </div>
+<body> <!-- 사람을 위한 정보 -->
+  <ul id="myId" class="class1 class2" style="color: red;" >
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Javascript</li>
+  </ul>
   <script>
-    const ulEle = document.querySelector('ul');
-    const newElem = document.createElement('li');
-// const newElem = document.createElement('<li>test</li>');
-// Uncaught DOMException: Failed to execute 'createElement' on 'Document': The tag name provided ('<li>test</li>') is not a valid name.
+    const $ul = document.querySelector('#myId');
+    console.log($ul);
 
-// 텍스트 노드를 생성
-const newText = document.createTextNode('Beijing');
+    $ul.style.color = 'blue';
 
-newElem.appendChild(newText);
-// 텍스트 노드를 newElem 자식으로 DOM 트리에 추가
-ulEle.appendChild(newElem);
+    console.log($ul.classList); // classList는 객체
+    console.log([...$ul.classList]); // 유사배열을 배열로 변경
+    console.log($ul.className);
+
+    // forEach(함수, 인수) console.log를 함수처럼 사용
+    console.log([...$ul.classList].forEach(item => console.log(item)));
+
+    // 하지만 classList 프로토타입 메소드가 있다.
+    $ul.classList.add('class3'); // 추가
+    console.log($ul.classList.contains('class3')); // 클래스 존재 여부 true,false
+    $ul.classList.remove('class3'); // 제거
+
+    const $lis = document.querySelectorAll('#myId li');
+    $lis.forEach($li => $li.className = 'class11'); // NodeList.prototype.forEacy
+    [...$lis].forEach($li => $li.classList.add('class10')); // Array.prototype.forEacy
   </script>
 </body>
 </html>
