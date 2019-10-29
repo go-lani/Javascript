@@ -30,14 +30,9 @@
     console.log($ul.classList.contains('class3')); // 클래스 존재 여부 true,false
     $ul.classList.remove('class3'); // 제거
 
-    const $lis = document.querySelectorAll('#myId li'); // $lis는 Nodelist 객체에 담겨져 나온다.
+    const $lis = document.querySelectorAll('#myId li');
     $lis.forEach($li => $li.className = 'class11'); // NodeList.prototype.forEacy
     [...$lis].forEach($li => $li.classList.add('class10')); // Array.prototype.forEacy
-
-    document.querySelector('#myId').innerHTML += '<li>aaa</li>'; // 동적 추가
-
-
-
   </script>
 </body>
 </html>
