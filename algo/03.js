@@ -18,12 +18,10 @@ function alphaString46(s) {
   //   console.log(false);
   // }
 
-  if (s && !spaceCheck.test(s)) {
-    if (s.length >= 4 && s.length <= 6) {
-      !isNaN(s) ? console.log(true) : console.log(false);
-    } else {
-      console.log(false);
-    }
+  if (!s || spaceCheck.test(s)) return console.log(false);
+
+  if (s.length >= 4 && s.length <= 6) {
+    !isNaN(s) ? console.log(true) : console.log(false);
   } else {
     console.log(false);
   }
@@ -36,4 +34,4 @@ alphaString46('9014'); // true
 alphaString46('723');  // false
 alphaString46('a234'); // false
 alphaString46('a');     // false
-alphaString46('1111 ');       // false
+alphaString46('1111');       // false
