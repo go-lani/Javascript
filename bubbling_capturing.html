@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- 문서형식 선언 -->
+<html lang="ko">
+<head> <!-- 브라우저를 위한 정보(메타 데이터) 선언 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM</title>
+</head>
+<body> <!-- 사람을 위한 정보 -->
+  <button class="add-btn">add</button>
+  <ul id="todos"></ul>
+  <script>
+    const $todos = document.querySelector('#todos');
+    // const $li = document.querySelector('.todo'); // 호출되기 전에는 null이니 이벤트 객체를 가져와서 사용한다.
+    // const $removeButton = document.querySelector('.removeButton'); // null 호출되기 전이니까 null이다.
+    const $addButton = document.querySelector('.add-btn');
+
+    $addButton.addEventListener('click', function () {
+      $todos.innerHTML += '<li class="todo">test <button class="removeButton">X</button></li>';
+    });
+
+    // $removeButton.addEventListener('click', function () { $removeButton은 null이기 때문에 동작 X
+    // });
+
+    // 이벤트 객체(이벤트에 대한 정보들을 담고 있는 객체)를 쓸때 사용, 브라우저가 이벤트 객체를 만들어서 인수로 전해준다.
+    // 캡처링을 이용한 동작원리
+    $todos.addEventListener('click', function (e) {
+      console.log(e.target); // 이벤트를 발생시킨 타겟을 알 수 있다.
+      // if (e.target.parentNode.classList == 'todo') { === 은 안된다. 버그가 있다, 아래와 같이 작성
+      //   e.target.parentNode.remove();
+      // }
+
+      // if (e.target.classList.contains('removeButton')) { // contains(인수)는 인수 포함되어있는지 알 수있다.
+      //   e.target.parentNode.remove();
+      // }
+
+      if (!e.target.classList.contains('removeButton'));
+
+      // e.target.parentNode.remove(); 올바르지 않음
+      $todos.removeChild(e.target.parentNode); // todos의 자식요소를 삭제한다.
+    });
+  </script>
+</body>
+</html>

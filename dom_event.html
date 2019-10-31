@@ -1,0 +1,43 @@
+<!DOCTYPE html> <!-- 문서형식 선언 -->
+<html lang="ko">
+<head> <!-- 브라우저를 위한 정보(메타 데이터) 선언 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM</title>
+</head>
+<body> <!-- 사람을 위한 정보 -->
+  <input type="text" oninput="bar()"> <!-- 브라우저가 oninput이라는 프로퍼티에 선언문을 넣는게 아니라 oninput이라는 어튜리뷰트가 oninput이라는 함수를 만들고 호출문을 넣어준다. -->
+  <button>click</button>
+  <p></p>
+  <script>
+    const $input = document.querySelector('input[type="text"]');
+    const $button = document.querySelector('button');
+    const $p = document.querySelector('p');
+
+    $input.addEventListener('input', function () {
+      $p.innerHTML = $input.value;
+    });
+
+    const bar = function () {
+      console.log($input.value);
+    };
+
+
+    // $button.onclick = bar(); // X undefined로 평가되는 표현식이다.
+    $button.onclick = bar; // O
+
+
+    // onclick이라는 이벤트 핸들러 프로퍼티에 function을 추가했으니 이벤트 핸들러는 메소드이다.
+    // 메소드는 호출한 객체가 this인데, 이벤트 핸들러는 window가 호출하니, this는 window이다.
+    // 하지만, 문법적으로 .앞에 있는 요소를 this로 본다.
+    $button.onclick = function () {
+      console.log($input.value);
+    };
+
+    // $button.addEventListener('click', function() {
+    //   console.log($button);
+    // });
+  </script>
+</body>
+</html>
