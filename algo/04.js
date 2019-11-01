@@ -5,24 +5,43 @@
 // 예를 들어 s가 ‘pPoooyY’면 true를 리턴하고 ‘Pyy’라면 false를 리턴한다.
 
 function numPY(s) {
+  // ①
+  // if (!s) return true;
+
+  // const arr = s.split('');
+  // const strP = new Array();
+  // const strY = new Array();
+
+  // arr.forEach(str => {
+  //   if (str === 'p' || str === 'P') strP.push(str);
+  //   if (str === 'y' || str === 'Y') strY.push(str);
+  // });
+
+  // if (strP.length && strP.length) {
+  //   if (strP.length === strY.length) return true;
+
+  //   return false;
+  // }
+
+  // return true;
+
+  // ②
   if (!s) return true;
 
   const arr = s.split('');
-  const strP = new Array();
-  const strY = new Array();
+  let strP = 0;
+  let strY = 0;
 
   arr.forEach(str => {
-    if (str === 'p' || str === 'P') strP.push(str);
-    if (str === 'y' || str === 'Y') strY.push(str);
+    if (str === 'p' || str === 'P') strP += 1;
+    if (str === 'y' || str === 'Y') strY += 1;
   });
 
-  if (strP.length && strP.length) {
-    if (strP.length === strY.length) return true;
-
-    return false;
+  if (strP === strY) {
+    return true;
   }
 
-  return true;
+  return false;
 }
 
 console.log(numPY('pPoooyY')); // true
