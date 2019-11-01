@@ -20,7 +20,8 @@
     const $todos = document.querySelector('#todos');
 
     $inputTodo.addEventListener('keyup', function (e) {
-      if (e.keyCode !== 13 || this.value.trim() === '') return;
+      const value = this.value.trim();
+      if (e.keyCode !== 13 || value === '') return;
 
       $todos.innerHTML += `
         <li>

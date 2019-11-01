@@ -19,22 +19,23 @@
 
     // DOMs
     const $todos = document.querySelector('#todos');
-    // const $inputTodo = document.querySelector('.input-todo');
+    const $input = document.querySelector('.input-todo');
 
     const render = function () {
       let html = ''; // innerHtml은 문자열을 받으므로 text로 받는다.
 
       todos.forEach(todo => { // todos를 참조할 수 있다. 전역 변수이기 때문에
         html += `
-          <li id="todo${todo.id}">
+          <li id="${todo.id}">
             <label>
-              <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+              <input type="checkbox" class="check-complete" ${todo.completed ? 'checked' : ''}>
               <span class="content">${todo.content}</span>
             </label>
             <button type="button" class="delete-button">X</button>
           </li>
         `;
       });
+
 
       $todos.innerHTML = html;
     };
@@ -46,10 +47,59 @@
         { id: 2, content: 'CSS', completed: true },
         { id: 3, content: 'Javascript', completed: false }
       ];
+
       render();
     };
 
+    const numberCheck = function () {
+      let num = null;
+
+      if (todos.length > 0) {
+        num = Math.max(...todos.map(todo => todo.id)) + 1;
+      } else {
+        num = 1;
+      }
+
+      return num;
+    };
+
+    const addTodo = function (e) {
+      if (e.keyCode !== 13) return;
+
+      let lastNum = numberCheck();
+
+
+      todos = [...todos, { id: lastNum, content: e.target.value, completed: false }];
+
+      render();
+    };
+
+    const toggleComplete = function (e) {
+      const id = e.target.parentNode.parentNode.id;
+
+      todos = todos.map(todo => todo.id === +id ? { ...todo, completed : !todo.completed } : todo);
+
+      render();
+    };
+
+    const removeTodo = function (e) {
+      if (!e.target.classList.contains('delete-button')) return;
+
+      const id = e.target.parentNode.id;
+
+      todos = todos.filter(todo => todo.id !== +id);
+
+      console.log(todos.map(todo => console.log(todo)));
+
+      render();
+    };
+
+
+    // Events
     window.onload = getTodo;
+    $input.onkeyup = addTodo;
+    $todos.onchange = toggleComplete;
+    $todos.onclick = removeTodo;
   </script>
 </body>
 </html>
