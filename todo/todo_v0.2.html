@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event</title>
+</head>
+<style>
+.complete:checked + span {
+  text-decoration: line-through;
+}
+</style>
+<body>
+  <input type="text" class="input-todo" placeholder="Enter todo!">
+  <ul id="todos"></ul>
+  <script>
+    let todos = [];
+
+    // DOMs
+    const $todos = document.querySelector('#todos');
+    const $inputTodo = document.querySelector('.input-todo');
+
+    const render = function () {
+      let html = ''; // innerHtml은 문자열을 받으므로 text로 받는다.
+
+      todos.forEach(todo => { // todos를 참조할 수 있다. 전역 변수이기 때문에
+        html += `
+          <li id="todo${todo.id}">
+            <label>
+              <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+              <span class="content">${todo.content}</span>
+            </label>
+            <button type="button" class="delete-button">X</button>
+          </li>
+        `;
+      });
+
+      $todos.innerHTML = html;
+    };
+
+    const getTodo = function () {
+      // TODO: 서버로부터 todos 데이터를 취득
+      todos = [
+        { id: 1, content: 'HTML', completed: false },
+        { id: 2, content: 'CSS', completed: true },
+        { id: 3, content: 'Javascript', completed: false }
+      ];
+      render();
+    };
+
+    $inputTodo.addEventListener('keyup', function (e) {
+      if (e.keyCode !== 13 || this.value.trim() === '') return;
+
+      $todos.innerHTML += `
+        <li>
+          <label>
+            <input type="checkbox" class="complete">
+            <span>${this.value}</span>
+          </label>
+          <button type="button" class="delete-button">X</button>
+        </li>`;
+
+      this.value = '';
+      this.focus();
+    });
+
+    $todos.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('delete-button')) return;
+
+      this.removeChild(e.target.parentNode);
+    });
+
+    window.onload = getTodo;
+  </script>
+</body>
+</html>

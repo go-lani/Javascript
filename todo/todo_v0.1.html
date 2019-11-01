@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event</title>
+</head>
+<style>
+.complete:checked + span {
+  text-decoration: line-through;
+}
+</style>
+<body>
+  <input type="text" class="input-todo" placeholder="Enter todo!">
+  <ul id="todos"></ul>
+
+  <script>
+    const $inputTodo = document.querySelector('.input-todo');
+    const $todos = document.querySelector('#todos');
+
+    $inputTodo.addEventListener('keyup', function (e) {
+      if (e.keyCode !== 13 || this.value.trim() === '') return;
+
+      $todos.innerHTML += `
+        <li>
+          <label>
+            <input type="checkbox" class="complete">
+            <span>${this.value}</span>
+          </label>
+          <button type="button" class="delete-button">X</button>
+        </li>`;
+
+      this.value = '';
+      this.focus();
+    });
+
+    $todos.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('delete-button')) return;
+
+      this.removeChild(e.target.parentNode);
+    });
+  </script>
+</body>
+</html>
