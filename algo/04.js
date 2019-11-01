@@ -4,35 +4,29 @@
 // 대소문자를 구별하지 않으며 ‘p’, ‘y’ 모두 하나도 없는 경우는 항상 true를 리턴한다.
 // 예를 들어 s가 ‘pPoooyY’면 true를 리턴하고 ‘Pyy’라면 false를 리턴한다.
 
-const spaceCheck = /[\s]+/;
+function numPY(s) {
+  if (!s) return true;
 
-function alphaString46(s) {
-  // if (s && !spaceCheck.test(s)) {
-  //   let num = +s;
+  const arr = s.split('');
+  const strP = new Array();
+  const strY = new Array();
 
-  //   if (s.length >= 4 && s.length <= 6) {
-  //     num ? console.log(true) : console.log(false);
-  //   } else {
-  //     console.log(false);
-  //   }
-  // } else {
-  //   console.log(false);
-  // }
+  arr.forEach(str => {
+    if (str === 'p' || str === 'P') strP.push(str);
+    if (str === 'y' || str === 'Y') strY.push(str);
+  });
 
-  if (!s || spaceCheck.test(s)) return console.log(false);
+  if (strP.length && strP.length) {
+    if (strP.length === strY.length) return true;
 
-  if (s.length >= 4 && s.length <= 6) {
-    !isNaN(s) ? console.log(true) : console.log(false);
-  } else {
-    console.log(false);
+    return false;
   }
 
-  // s && !spaceCheck.test(s) ? s.length >= 4 && s.length <= 6 ? (!isNaN(s) ? console.log(true) : console.log(false)) : console.log(false) : console.log(false);
+  return true;
 }
 
-alphaString46('1234'); // true
-alphaString46('9014'); // true
-alphaString46('723');  // false
-alphaString46('a234'); // false
-alphaString46('a');     // false
-alphaString46('1111');       // false
+console.log(numPY('pPoooyY')); // true
+console.log(numPY('asPyy'));   // false
+console.log(numPY('ab'));      // true
+console.log(numPY(''));        // true
+console.log(numPY());          // true
