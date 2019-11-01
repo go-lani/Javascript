@@ -19,7 +19,7 @@
 
     // DOMs
     const $todos = document.querySelector('#todos');
-    const $inputTodo = document.querySelector('.input-todo');
+    // const $inputTodo = document.querySelector('.input-todo');
 
     const render = function () {
       let html = ''; // innerHtml은 문자열을 받으므로 text로 받는다.
@@ -48,28 +48,6 @@
       ];
       render();
     };
-
-    $inputTodo.addEventListener('keyup', function (e) {
-      if (e.keyCode !== 13 || this.value.trim() === '') return;
-
-      $todos.innerHTML += `
-        <li>
-          <label>
-            <input type="checkbox" class="complete">
-            <span>${this.value}</span>
-          </label>
-          <button type="button" class="delete-button">X</button>
-        </li>`;
-
-      this.value = '';
-      this.focus();
-    });
-
-    $todos.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('delete-button')) return;
-
-      this.removeChild(e.target.parentNode);
-    });
 
     window.onload = getTodo;
   </script>
