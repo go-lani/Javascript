@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>event</title>
+  <title>TodoList</title>
 </head>
 <style>
-.complete:checked + span {
+.check-complete:checked + span {
   text-decoration: line-through;
 }
 </style>
@@ -51,26 +51,14 @@
       render();
     };
 
-    const numberCheck = function () {
-      let num = null;
-
-      if (todos.length > 0) {
-        num = Math.max(...todos.map(todo => todo.id)) + 1;
-      } else {
-        num = 1;
-      }
-
-      return num;
-    };
-
     const addTodo = function (e) {
       if (e.keyCode !== 13) return;
 
-      let lastNum = numberCheck();
+      const num = Math.max(0, ...todos.map(todo => todo.id)) + 1;
 
+      todos = [...todos, { id: num, content: e.target.value, completed: false }];
 
-      todos = [...todos, { id: lastNum, content: e.target.value, completed: false }];
-
+      e.target.value = '';
       render();
     };
 
