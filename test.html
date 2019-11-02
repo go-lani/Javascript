@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .red  { color: #ff0000; }
+      .blue { color: #0000ff; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Cities</h1>
+      <ul class="parent">
+        <li id="one" class="red">Seoul</li>
+      </ul>
+    </div>
+    <script>
+      const one = document.getElementById('one');
+
+// inline 스타일 선언을 생성
+one.style.color = 'blue';
+
+// font-size와 같이 '-'으로 구분되는 프로퍼티는 카멜케이스로 변환하여 사용한다.
+one.style.fontSize = '2em';
+    </script>
+  </body>
+</html>
