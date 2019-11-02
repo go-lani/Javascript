@@ -51,14 +51,23 @@
       render();
     };
 
-    const addTodo = function (e) {
-      if (e.keyCode !== 13) return;
+    const addTodo = function () {
+      const value = $input.value.trim();
+
+      if (value === '') return alert('해야할 일을 입력해주세요.');
 
       const num = Math.max(0, ...todos.map(todo => todo.id)) + 1;
 
-      todos = [...todos, { id: num, content: e.target.value, completed: false }];
+      todos = [...todos, { id:num, content: value, completed: false }];
 
-      e.target.value = '';
+      $input.value = '';
+      $input.focus();
+    }
+
+    const addEnter = function (e) {
+      if (e.keyCode !== 13) return;
+
+      addTodo();
       render();
     };
 
@@ -85,7 +94,7 @@
 
     // Events
     window.onload = getTodo;
-    $input.onkeyup = addTodo;
+    $input.onkeyup = addEnter;
     $todos.onchange = toggleComplete;
     $todos.onclick = removeTodo;
   </script>
