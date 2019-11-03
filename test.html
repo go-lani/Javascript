@@ -7,20 +7,24 @@
     </style>
   </head>
   <body>
-    <div>
-      <h1>Cities</h1>
-      <ul class="parent">
-        <li id="one" class="red">Seoul</li>
-      </ul>
-    </div>
+    <button class="a" onclick="myHandler1(); myHandler2();">Click me</button>
+    <button class="b">Click me</button>
     <script>
-      const one = document.getElementById('one');
+      function myHandler1() {
+        alert('myHandler1');
+      }
+      function myHandler2() {
+        alert('myHandler2');
+      }
 
-// inline 스타일 선언을 생성
-one.style.color = 'blue';
+      const b = document.querySelector('.b');
 
-// font-size와 같이 '-'으로 구분되는 프로퍼티는 카멜케이스로 변환하여 사용한다.
-one.style.fontSize = '2em';
+      b.addEventListener('click', function () {
+        alert(111);
+      });
+
+      console.dir(document.querySelector('.a'));
+      console.dir(b);
     </script>
   </body>
 </html>
