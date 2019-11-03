@@ -6,18 +6,18 @@
 
 function toWeirdCase(s) {
   const strArr = s.split(' ');
-  let newS = '';
+  let newStr = '';
 
   for (let i = 0; i < strArr.length; i++) {
-    newS += ' ';
+    newStr += ' ';
 
     for (let j = 0; j < strArr[i].length; j++) {
       const cnt = j + 1;
-      cnt % 2 ? newS += strArr[i][j].toUpperCase() : newS += strArr[i][j];
+      cnt % 2 ? newStr += strArr[i][j].toUpperCase() : newStr += strArr[i][j];
     }
   }
-  console.log(newS.trim());
+  console.log(newStr.trim());
 }
 
-// console.log(toWeirdCase('hello world'));    // 'HeLlO WoRlD'
+console.log(toWeirdCase('hello world'));    // 'HeLlO WoRlD'
 console.log(toWeirdCase('my name is lee')); // 'My NaMe Is LeE'
