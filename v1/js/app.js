@@ -1,10 +1,12 @@
+let todos = [];
+
+// DOMs;
 const $input = document.querySelector('.input-todo');
 const $todos = document.querySelector('.todos');
 const $allCheck = document.querySelector('#ck-complete-all');
 const $currentCount = document.querySelector('.active-todos');
 const $completedCount = document.querySelector('.completed-todos');
 const $clearCompleted = document.querySelector('.clear-completed .btn');
-let todos = [];
 
 function count() {
   return Math.max(0, ...todos.map(todo => todo.id)) + 1;
@@ -13,7 +15,7 @@ function count() {
 function render() {
   let html = '';
 
-  todos = todos.sort(function (a, b) { return b['id'] - a['id'] });
+  todos = todos.sort(function (a, b) { return b.id - a.id });
 
   todos.forEach(todo => {
     html += `
@@ -25,9 +27,8 @@ function render() {
   });
 
   $todos.innerHTML = html;
-
-  $currentCount.innerHTML = todos.length;
-  $completedCount.innerHTML = todos.filter(todo => todo.completed).length;
+  $currentCount.textContent = todos.filter(todo => !todo.completed).length;
+  $completedCount.textContent = todos.filter(todo => todo.completed).length;
 }
 
 function getTodos() {
@@ -36,8 +37,6 @@ function getTodos() {
     { id: 2, content: 'CSS', completed: false },
     { id: 3, content: 'Javascript', completed: false }
   ];
-
-  render();
 }
 
 function removeTodo(e) {
@@ -74,9 +73,12 @@ function removeComplete() {
 }
 
 // Event
-window.onload = getTodos;
+window.onload = () => {
+  getTodos();
+  render();
+};
 $todos.onclick = removeTodo;
 $input.onkeyup = addTodos;
 $todos.onchange = changeCompleted;
-$allCheck.onclick= allComplete;
+$allCheck.onclick = allComplete;
 $clearCompleted.onclick = removeComplete;
