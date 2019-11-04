@@ -1,5 +1,9 @@
 const $input = document.querySelector('.input-todo');
 const $todos = document.querySelector('.todos');
+const $allCheck = document.querySelector('#ck-complete-all');
+const $currentCount = document.querySelector('.active-todos');
+const $completedCount = document.querySelector('.completed-todos');
+const $clearCompleted = document.querySelector('.clear-completed .btn');
 let todos = [];
 
 function count() {
@@ -9,16 +13,21 @@ function count() {
 function render() {
   let html = '';
 
+  todos = todos.sort(function (a, b) { return b['id'] - a['id'] });
+
   todos.forEach(todo => {
     html += `
       <li id="${todo.id}" class="todo-item">
-        <input class="checkbox" type="checkbox" id="ck-myId${todo.id}" ${todo.completed ? 'checked' : ''}>
-        <label for="ck-myId${todo.id}">${todo.content}</label>
+        <input class="checkbox" type="checkbox" id="ck-${todo.id}" ${todo.completed ? 'checked' : ''}>
+        <label for="ck-${todo.id}">${todo.content}</label>
         <i class="remove-todo far fa-times-circle"></i>
       </li>`;
   });
 
   $todos.innerHTML = html;
+
+  $currentCount.innerHTML = todos.length;
+  $completedCount.innerHTML = todos.filter(todo => todo.completed).length;
 }
 
 function getTodos() {
@@ -31,13 +40,43 @@ function getTodos() {
   render();
 }
 
-$input.addEventListener('keyup', function (e) {
-  if (e.keyCode !== 13) return;
+function removeTodo(e) {
+  if (!e.target.classList.contains('remove-todo')) return;
 
-  todos = [...todos, { id: count(), content: e.target.value, completed: false }];
+  todos = todos.filter(todo => todo.id !== +e.target.parentNode.id);
 
   render();
-});
+}
+
+function addTodos(e) {
+  if (e.keyCode !== 13 || $input.value.trim() === '') return;
+
+  todos = [...todos, { id: count(), content: e.target.value, completed: false }];
+  $input.value = '';
+  render();
+}
+
+function changeCompleted(e) {
+  todos = todos.map(todo => todo.id === +e.target.parentNode.id ? { ...todo, completed: !todo.completed } : todo);
+  $completedCount.innerHTML = todos.filter(todo => todo.completed).length;
+}
+
+function allComplete() {
+  todos = todos.map(todo => ({ ...todo, completed: todo.completed ? false : true }));
+
+  render();
+}
+
+function removeComplete() {
+  todos = todos.filter(todo => !todo.completed);
+
+  render();
+}
 
 // Event
 window.onload = getTodos;
+$todos.onclick = removeTodo;
+$input.onkeyup = addTodos;
+$todos.onchange = changeCompleted;
+$allCheck.onclick= allComplete;
+$clearCompleted.onclick = removeComplete;
