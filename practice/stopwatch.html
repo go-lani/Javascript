@@ -49,19 +49,6 @@
     let flag = false;
     let run = null;
 
-    $button.onclick = () => {
-      flag = !flag;
-      if (flag) {
-        run = setInterval(function () {
-          addmiliSecond();
-        }, 10);
-        $button.textContent = 'Stop';
-      } else {
-        clearInterval(run);
-        $button.textContent = 'Start';
-      }
-    };
-
     const print = () => {
       $display.textContent = `${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}:${miliSecond < 10 ? '0' + miliSecond : miliSecond}`
     };
@@ -79,6 +66,19 @@
         }
       }
       print();
+    };
+
+    $button.onclick = () => {
+      flag = !flag;
+      if (flag) {
+        run = setInterval(function () {
+          addmiliSecond();
+        }, 10);
+        $button.textContent = 'Stop';
+      } else {
+        clearInterval(run);
+        $button.textContent = 'Start';
+      }
     };
   </script>
 </body>
