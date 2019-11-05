@@ -27,7 +27,7 @@
       outline: none;
     }
 
-    .control:hover {
+    .control:focus {
       background: #f44336;
       color: aliceblue;
     }
@@ -55,8 +55,10 @@
         run = setInterval(function () {
           addmiliSecond();
         }, 10);
+        $button.textContent = 'Stop';
       } else {
         clearInterval(run);
+        $button.textContent = 'Start';
       }
     };
 
