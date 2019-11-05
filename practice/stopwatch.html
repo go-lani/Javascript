@@ -4,71 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Counter</title>
+  <title>Stop watch</title>
   <style>
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 130px;
-      margin: 20px auto;
-      font-size: 24px;
-      color: #3f51b5;
-    }
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-    button {
-      padding: 5px 10px;
-      font-size: 24px;
-      border-radius: 5px;
-      color: #3f51b5;
-      border-color: #3f51b5;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .counter {
-      width: 50px;
+    .stop-watch {
+      font-family: 'Source Code Pro', monospace;
       text-align: center;
+      font-size: 3em;
+      padding: 30px;
+    }
+
+    .control {
+      width: 300px;
+      padding: 5px;
+      margin-top: 15px;
+      font-size: 36px;
+      font-weight: bold;
+      border: 2px solid #f44336;
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .control:hover {
+      background: #f44336;
+      color: aliceblue;
     }
   </style>
+  <title>Stop watch</title>
 </head>
 <body>
-  <div class="container">
-    <button class="increase">+</button>
-    <div class="counter">0</div>
-    <button class="decrease">-</button>
+  <div class="stop-watch">
+    <div class="display">00:00:00</div>
+    <button class="control">Start</button>
   </div>
-
   <script>
-    const $increase = document.querySelector('.increase');
-    const $decrease = document.querySelector('.decrease');
+    const $display = document.querySelector('.display');
+    const $button = document.querySelector('.control');
+    let minute = 0;
+    let second = 0;
+    let miliSecond = 0;
 
-    const counter = (function () {
-      let number = 0;
-      let $counter = document.querySelector('.counter');
+    let flag = false;
+    let run = null;
 
-      return {
-        increase() {
-          number++;
-          $counter.textContent = number;
-        },
-
-        decrease() {
-          if (!number) return;
-          number--;
-          $counter.textContent = number;
-        }
+    $button.onclick = () => {
+      flag = !flag;
+      if (flag) {
+        run = setInterval(function () {
+          addmiliSecond();
+        }, 10);
+      } else {
+        clearInterval(run);
       }
-    }());
-
-    const count = counter;
-
-    $increase.onclick = () => {
-      count.increase();
     };
 
-    $decrease.onclick = () => {
-      count.decrease();
+    const print = () => {
+      $display.textContent = `${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}:${miliSecond < 10 ? '0' + miliSecond : miliSecond}`
+    };
+
+    const addmiliSecond = () => {
+      miliSecond += 1;
+
+      if (miliSecond === 100) {
+        miliSecond = 0;
+        second += 1;
+
+        if (second === 60) {
+          second = 0;
+          minute += 1;
+        }
+      }
+      print();
     };
   </script>
 </body>
