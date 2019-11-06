@@ -126,8 +126,12 @@
       if (second > 60) {
         second = 0;
         minute += 1;
-        if (hour > 23) {
+        if (minute > 60) {
+          minute = 0;
           hour += 1;
+          if (hour > 23) {
+            hour = 0;
+          }
         }
       }
       print();

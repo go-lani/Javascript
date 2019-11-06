@@ -42,23 +42,23 @@
   <script>
     const $increase = document.querySelector('.increase');
     const $decrease = document.querySelector('.decrease');
+    const $counter = document.querySelector('.counter');
 
     const counter = (function () {
       let number = 0;
-      let $counter = document.querySelector('.counter');
 
       return {
         increase() {
-          number++;
+          number += 1;
           $counter.textContent = number;
         },
 
         decrease() {
           if (!number) return;
-          number--;
+          number -= 1;
           $counter.textContent = number;
         }
-      }
+      };
     }());
 
     const count = counter;
