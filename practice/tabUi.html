@@ -116,7 +116,9 @@
         </div>`;
     }
 
-    // do someting
+    changeContent() {
+
+    }
   }
 
   window.onload = function () {
@@ -153,7 +155,14 @@
     ]);
 
     tab.render();
+
+    tab.tabs.onclick = ({ target }) => {
+      if (target.classList.contains('tab')) console.log(target);
+
+    };
   };
+
+
   </script>
 </body>
 </html>
