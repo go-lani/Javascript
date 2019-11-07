@@ -88,13 +88,11 @@
     constructor(tabsData) {
       this.tabsData = tabsData;
       this.tabState = 1; // tab id
-
-      this.tabs = document.querySelector('.tabs');
-      // do someting
+      this.$tabs = document.querySelector('.tabs');
     }
 
     render() {
-      this.tabs.innerHTML = `
+      this.$tabs.innerHTML = `
         <ul class="tab-group"></ul>
         <div class="tab-content-group"></div>`;
 
@@ -116,8 +114,9 @@
         </div>`;
     }
 
-    changeContent() {
-
+    changeContent(id) {
+      this.tabState = +id;
+      this.render();
     }
   }
 
@@ -156,9 +155,10 @@
 
     tab.render();
 
-    tab.tabs.onclick = ({ target }) => {
-      if (target.classList.contains('tab')) console.log(target);
+    tab.$tabs.onclick = ({ target }) => {
+      if (!target.classList.contains('tab')) return;
 
+      tab.changeContent(target.id);
     };
   };
 
