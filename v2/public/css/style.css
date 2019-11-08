@@ -163,6 +163,8 @@ body {
   position: absolute;
   top: 50%;
   right: 10px;
+  border: none;
+  background: none;
   cursor: pointer;
   transform: translate3d(0, -50%, 0);
 }
