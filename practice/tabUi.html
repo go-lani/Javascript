@@ -106,17 +106,22 @@
           </li>`;
       });
 
-      const content = this.tabsData.filter(data => data.id === this.tabState);
+      const currentContent = this.tabsData.filter(data => data.id === this.tabState);
+
 
       $content.innerHTML += `
         <div class="tab-content">
-          <div>${content[0].content}</div>
+          <div>${Tab.filter(...currentContent)}</div>
         </div>`;
     }
 
     changeContent(id) {
       this.tabState = +id;
       this.render();
+    }
+
+    static filter(current) {
+      return current.content;
     }
   }
 
