@@ -62,12 +62,12 @@ const addTodo = data => {
   };
 };
 
-const changeState = id => {
+const changeState = (id, completed) => {
   const xhr = new XMLHttpRequest();
 
-  xhr.open('POST', '/todos');
+  xhr.open('PATCH', `/todos/${id}`);
   xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(id));
+  xhr.send(JSON.stringify(completed));
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState !== XMLHttpRequest.DONE) return;
@@ -75,7 +75,7 @@ const changeState = id => {
     if (xhr.status === 200) {
       render(JSON.parse(xhr.response));
     } else {
-      throw new ErrorEvent(xhr.status);
+      throw new Error(xhr.status);
     }
   };
 };
@@ -97,5 +97,6 @@ $input.onkeyup = ({ target, keyCode }) => {
 
 $todos.onchange = ({ target }) => {
   const id = target.parentNode.id;
-  changeState(id);
+  const completed = !todos.find(todo => todo.id === +id).completed;
+  changeState(id, { completed });
 };

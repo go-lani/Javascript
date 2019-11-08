@@ -22,5 +22,13 @@ app.post('/todos', (req, res) => {
   res.send(todos);
 });
 
+app.patch('/todos/:id', (req, res) => {
+  const id = req.params.id;
+  const completed = req.body.completed;
+
+  todos = todos.map(todo => todo.id === +id ? { ...todo, completed } : todo);
+  res.send(todos);
+});
+
 
 app.listen(3000, () => console.log('Hello localhost:3000'));
