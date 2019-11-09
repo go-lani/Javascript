@@ -30,7 +30,7 @@ app.put('/todos', (req, res) => {
 });
 
 app.patch('/todos/:id', (req, res) => {
-  const id = req.params.id;
+  const id = req.body.id;
 
   todos = todos.map(todo => todo.id === +id ? { ...todo, completed: !todo.completed } : todo);
   res.send(todos);
