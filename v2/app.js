@@ -22,25 +22,17 @@ app.post('/todos', (req, res) => {
   res.send(todos);
 });
 
-app.put('/todos/:type', (req, res) => {
-  console.log(req.params.type);
+app.put('/todos', (req, res) => {
   const check = req.body.allStatus;
 
-  if (req.params.type === 'check') {
-    todos = todos.map(todo => ({ ...todo, completed: check }));
-    res.send(todos);
-  } else if (req.params.type === 'clear') {
-    todos = todos.filter(todo => todo.completed === false);
-    res.send(todos);
-  }
-
+  todos = todos.map(todo => ({ ...todo, completed: check }));
+  res.send(todos);
 });
 
 app.patch('/todos/:id', (req, res) => {
   const id = req.params.id;
-  const completed = req.body.completed;
 
-  todos = todos.map(todo => todo.id === +id ? { ...todo, completed } : todo);
+  todos = todos.map(todo => todo.id === +id ? { ...todo, completed: !todo.completed } : todo);
   res.send(todos);
 });
 
@@ -51,5 +43,9 @@ app.delete('/todos/:id', (req, res) => {
   res.send(todos);
 });
 
+app.delete('/completedTodo', (req, res) => {
+  todos = todos.filter(todo => todo.completed === false);
+  res.send(todos);
+});
 
 app.listen(3000, () => console.log('Hello localhost:3000'));

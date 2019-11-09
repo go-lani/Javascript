@@ -1,21 +1,23 @@
 let todos = [];
-let type = 'all'; // 선택된 type의 상태 값, 'all' & 'active' & 'completed'
+let category = 'all'; // 선택된 type의 상태 값, 'all' & 'active' & 'completed'
 
 // DOMs
 const $todos = document.querySelector('.todos');
 const $input = document.querySelector('.input-todo');
 const $completedAll = document.querySelector('#ck-complete-all');
 const $clearCompleted = document.querySelector('.clear-completed');
-// const $completedTodos = document.querySelector('.completed-todos');
-// const $activeTodos = document.querySelector('.active-todos');
-// const $nav = document.querySelector('.nav');
+const $completedTodos = document.querySelector('.completed-todos');
+const $activeTodos = document.querySelector('.active-todos');
+const $nav = document.querySelector('.nav');
 
 const render = data => {
   todos = data;
 
   let html = '';
 
-  todos.forEach(({ id, content, completed }) => {
+  const _todos = todos.filter(({ completed }) => category === 'all' ? true : (category === 'active' ? !completed : completed));
+
+  _todos.forEach(({ id, content, completed }) => {
     html += `
     <li id="${id}" class="todo-item">
       <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
@@ -26,6 +28,8 @@ const render = data => {
   });
 
   $todos.innerHTML = html;
+  $completedTodos.textContent = todos.filter(todo => todo.completed).length;
+  $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
 };
 
 const getTodo = () => {
@@ -66,7 +70,6 @@ const removeTodo = id => {
   const xhr = new XMLHttpRequest();
 
   xhr.open('DELETE', `/todos/${id}`);
-  xhr.setRequestHeader('Content-type', 'application/json');
   xhr.send();
 
   xhr.onreadystatechange = () => {
@@ -80,12 +83,11 @@ const removeTodo = id => {
   };
 };
 
-const changeState = (id, completed) => {
+const changeState = id => {
   const xhr = new XMLHttpRequest();
 
   xhr.open('PATCH', `/todos/${id}`);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(completed));
+  xhr.send();
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState !== XMLHttpRequest.DONE) return;
@@ -100,10 +102,10 @@ const changeState = (id, completed) => {
 
 const todoCount = () => todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
 
-const completedAll = (allStatus, check) => {
+const completedAll = allStatus => {
   const xhr = new XMLHttpRequest();
 
-  xhr.open('PUT', `/todos/${check}`);
+  xhr.open('PUT', '/todos');
   xhr.setRequestHeader('Content-type', 'application/json');
   xhr.send(JSON.stringify(allStatus));
 
@@ -118,12 +120,11 @@ const completedAll = (allStatus, check) => {
   };
 };
 
-const clearCompleted = check => {
+const clearCompleted = () => {
   const xhr = new XMLHttpRequest();
 
-  xhr.open('PUT', `/todos/${check}`);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify());
+  xhr.open('DELETE', '/completedTodo');
+  xhr.send();
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState !== XMLHttpRequest.DONE) return;
@@ -135,6 +136,7 @@ const clearCompleted = check => {
     }
   };
 };
+
 // Events
 window.onload = () => {
   getTodo();
@@ -150,23 +152,31 @@ $input.onkeyup = ({ target, keyCode }) => {
 
 $todos.onchange = ({ target }) => {
   const id = target.parentNode.id;
-  const completed = !todos.find(todo => todo.id === +id).completed;
-  changeState(id, { completed });
+  changeState(id);
 };
 
 $todos.onclick = ({ target }) => {
   if (!target.classList.contains('remove-todo')) return;
 
-  const id = target.parentNode.id;
+  const id = +target.parentNode.id;
   removeTodo(id);
 };
 
 $completedAll.onclick = ({ target }) => {
   const allStatus = target.checked;
 
-  completedAll({ allStatus }, 'check');
+  completedAll({ allStatus });
 };
 
 $clearCompleted.onclick = () => {
-  clearCompleted('clear');
+  clearCompleted();
+};
+
+$nav.onclick = ({ target }) => {
+  if (target.classList.contains('nav')) return;
+
+  [...$nav.children].forEach($item => $item.classList.toggle('active', $item === target));
+  category = target.id;
+
+  getTodo();
 };
