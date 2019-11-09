@@ -175,8 +175,6 @@ const ajax = (() => {
 //   };
 // };
 
-
-
 // Events
 window.onload = () => {
   ajax.get('todos', render);
