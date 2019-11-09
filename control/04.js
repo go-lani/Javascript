@@ -12,7 +12,4 @@ console.log('------------------------');
 for (let j = 9; j > 0; j--) {
   // 암묵적 변환을 이용한 방법
   if (j % 2) console.log(j);
-
-  // 비교연산자를 이용한 방법
-  if (j % 2 === 1) console.log(j);
 }

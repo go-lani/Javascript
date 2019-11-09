@@ -15,6 +15,6 @@ result = '';
 
 // type.2 if문을 이용하여 적용
 for (let j = 0; j < 10; j++) {
-  if (j % 2 === 0) result += j;
+  if (!(j % 2)) result += j;
 }
 console.log(result);

@@ -10,5 +10,5 @@ console.log('------------------------');
 
 // type.2 if문을 활용하여 적용
 for (let j = 0; j < 10; j++) {
-  if (j % 2 === 0) console.log(j);
+  if (!(j % 2)) console.log(j);
 }
