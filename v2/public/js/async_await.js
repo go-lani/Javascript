@@ -79,9 +79,9 @@ const removeTodo = async id => {
   }
 };
 
-const completedAll = async allStatus => {
+const completedAll = async status => {
   try {
-    const res = await axios.put('/todos', { allStatus });
+    const res = await axios.put('/todos', { status });
     todos = res.data;
     render();
   } catch (e) {
@@ -128,9 +128,9 @@ $todos.onclick = ({ target }) => {
 };
 
 $completedAll.onclick = ({ target }) => {
-  const allStatus = target.checked;
+  const status = target.checked;
 
-  completedAll(allStatus);
+  completedAll(status);
 };
 
 $clearCompleted.onclick = () => {

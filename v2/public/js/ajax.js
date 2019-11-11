@@ -202,13 +202,13 @@ $todos.onclick = ({ target }) => {
 };
 
 $completedAll.onclick = ({ target }) => {
-  const allStatus = target.checked;
+  const status = target.checked;
 
-  ajax.put('/todos', { allStatus }, render);
+  ajax.put('/todos', { status }, render);
 };
 
 $clearCompleted.onclick = () => {
-  ajax.delete('/completedTodo', render);
+  ajax.delete('/clearCompleted', render);
 };
 
 $nav.onclick = ({ target }) => {

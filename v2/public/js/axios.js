@@ -32,68 +32,45 @@ const render = () => {
   $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
 };
 
+
 const getTodo = () => {
-  fetch('/todos')
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.get('/todos')
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
 
 const addTodo = content => {
-  fetch('/todos', {
-    method: 'POST',
-    headers: {
-      'Content-type' : 'application/json'
-    },
-    body: JSON.stringify(content)
-  })
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.post('/todos', content)
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
 
 const removeTodo = id => {
-  fetch(`/todos/${id}`, {
-    method: 'DELETE'
-  })
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.delete(`/todos/${id}`)
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
 
 const changeComplete = id => {
-  fetch(`/todos/${id}`, {
-    method: 'PATCH'
-  })
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.patch(`/todos/${id}`)
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
 
 const completeAll = status => {
-  fetch('/todos', {
-    method: 'PUT',
-    headers: {
-      'Content-type' : 'application/json'
-    },
-    body: JSON.stringify({ status })
-  })
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.put('/todos', { status })
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
 
 const clearCompleted = () => {
-  fetch('/clearCompleted', {
-    method: 'DELETE'
-  })
-    .then(res => res.json())
-    .then(_todos => todos = _todos)
+  axios.delete('/clearCompleted')
+    .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));
 };
@@ -107,9 +84,9 @@ $input.onkeyup = ({ target, keyCode }) => {
   const content = target.value.trim();
   if (content === '' || keyCode !== 13) return;
 
-  target.value = '';
-
   addTodo({ id: todoCount(), content, completed: false });
+
+  target.value = '';
 };
 
 $todos.onclick = ({ target }) => {

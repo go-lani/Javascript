@@ -79,7 +79,7 @@ const getTodo = () => {
 };
 
 const addTodo = content => {
-  ajax.post('/todos', { id: todoCount(), content, completed: false })
+  ajax.post('/todos', content)
     .then(_todos => todos = _todos)
     .then(render)
     .catch(error => console.error(error));
@@ -122,7 +122,7 @@ $input.onkeyup = ({ target, keyCode }) => {
   const content = target.value.trim();
   if (content === '' || keyCode !== 13) return;
 
-  addTodo(content);
+  addTodo({ id: todoCount(), content, completed: false });
 
   target.value = '';
 };
