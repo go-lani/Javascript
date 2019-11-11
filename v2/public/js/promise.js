@@ -40,61 +40,115 @@ const ajax = (() => {
       xhr.setRequestHeader('Content-type', 'application/json');
       xhr.send(JSON.stringify(payload));
 
-      xhr.onload = () => { // XMLHttpRequest.DONE 상태일때 onload가 호출된다.
-        if (xhr.status === 200 || xhr.status === 201) {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+        if (xhr.status === 200) {
           resolve(JSON.parse(xhr.response));
         } else {
-          reject(new Error(xhr.status));
+          reject(new Error('Error', xhr.status));
         }
       };
     });
   };
   return {
     get(url) {
-      return req('GET', url); // promise 객체를 리턴한다.
+      return req('GET', url);
     },
     post(url, payload) {
       return req('POST', url, payload);
     },
-    delete(url) {
-      return req('DELETE', url);
+    put(url, payload) {
+      return req('PUT', url, payload);
     },
     patch(url, payload) {
       return req('PATCH', url, payload);
     },
-    put(url, payload) {
-      return req('PUT', url, payload);
+    delete(url) {
+      return req('DELETE', url);
     }
   };
 })();
 
+
+const getTodo = () => {
+  ajax.get('/todos')
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
+const addTodo = content => {
+  ajax.post('/todos', { id: todoCount(), content, completed: false })
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
+const removeTodo = id => {
+  ajax.delete(`/todos/${id}`)
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
+const changeComplete = id => {
+  ajax.patch(`/todos/${id}`)
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
+const completeAll = status => {
+  ajax.put('/todos', { status })
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
+const clearCompleted = () => {
+  ajax.delete('/clearCompleted')
+    .then(_todos => todos = _todos)
+    .then(render)
+    .catch(error => console.error(error));
+};
+
 // Events
 window.onload = () => {
+  getTodo();
 };
 
 $input.onkeyup = ({ target, keyCode }) => {
   const content = target.value.trim();
   if (content === '' || keyCode !== 13) return;
 
-  target.value = '';
-};
+  addTodo(content);
 
-$todos.onchange = ({ target }) => {
-  const id = +target.parentNode.id;
+  target.value = '';
 };
 
 $todos.onclick = ({ target }) => {
   if (!target.classList.contains('remove-todo')) return;
 
-  const id = +target.parentNode.id;
+  const id = target.parentNode.id;
+
+  removeTodo(id);
 };
 
-$completedAll.onclick = ({ target }) => {
-  const allStatus = target.checked;
+$todos.onchange = ({ target }) => {
+  const id = target.parentNode.id;
 
+  changeComplete(id);
+};
+
+
+$completedAll.onclick = ({ target }) => {
+  const status = target.checked;
+  completeAll(status);
 };
 
 $clearCompleted.onclick = () => {
+  clearCompleted();
 };
 
 $nav.onclick = ({ target }) => {
@@ -103,4 +157,6 @@ $nav.onclick = ({ target }) => {
   [...$nav.children].forEach($item => $item.classList.toggle('active', $item === target));
 
   category = target.id;
+
+  getTodo();
 };

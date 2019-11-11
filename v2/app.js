@@ -23,7 +23,7 @@ app.post('/todos', (req, res) => {
 });
 
 app.put('/todos', (req, res) => {
-  const check = req.body.allStatus;
+  const check = req.body.status;
 
   todos = todos.map(todo => ({ ...todo, completed: check }));
   res.send(todos);
@@ -43,7 +43,7 @@ app.delete('/todos/:id', (req, res) => {
   res.send(todos);
 });
 
-app.delete('/completedTodo', (req, res) => {
+app.delete('/clearCompleted', (req, res) => {
   todos = todos.filter(todo => todo.completed === false);
   res.send(todos);
 });
