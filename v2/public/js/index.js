@@ -51,8 +51,6 @@ const ajax = (() => {
       // };
 
       xhr.onload = () => { // XMLHttpRequest.DONE 상태일때 onload가 호출된다.
-        if (xhr.readyState !== XMLHttpRequest.DONE) return;
-
         if (xhr.status === 200 || xhr.status === 201) {
           resolve(JSON.parse(xhr.response));
         } else {
