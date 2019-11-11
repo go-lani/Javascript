@@ -30,16 +30,16 @@ app.put('/todos', (req, res) => {
 });
 
 app.patch('/todos/:id', (req, res) => {
-  const id = req.body.id;
+  const id = +req.params.id;
 
-  todos = todos.map(todo => todo.id === +id ? { ...todo, completed: !todo.completed } : todo);
+  todos = todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo);
   res.send(todos);
 });
 
 app.delete('/todos/:id', (req, res) => {
-  const id = req.params.id;
+  const id = +req.params.id;
 
-  todos = todos.filter(todo => todo.id !== +id);
+  todos = todos.filter(todo => todo.id !== id);
   res.send(todos);
 });
 
