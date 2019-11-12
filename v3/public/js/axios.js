@@ -61,8 +61,8 @@ const changeComplete = id => {
     .catch(err => console.error(err));
 };
 
-const completeAll = status => {
-  axios.put('/todos', { status })
+const completeAll = completed => {
+  axios.patch('/todos', { completed })
     .then(res => todos = res.data)
     .then(render)
     .catch(err => console.error(err));

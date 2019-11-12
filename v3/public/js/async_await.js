@@ -44,8 +44,8 @@ const getTodos = async () => {
     const res = await axios.get('/todos');
     todos = res.data;
     render();
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -55,7 +55,7 @@ const addTodo = async content => {
     todos = res.data;
     render();
   } catch (e) {
-    console.log(err);
+    console.log(e);
   }
 };
 
@@ -65,7 +65,7 @@ const changeComplete = async id => {
     todos = res.data;
     render();
   } catch (e) {
-    console.log(err);
+    console.log(e);
   }
 };
 
@@ -75,17 +75,17 @@ const removeTodo = async id => {
     todos = res.data;
     render();
   } catch (e) {
-    console.log(err);
+    console.log(e);
   }
 };
 
-const completedAll = async status => {
+const completedAll = async completed => {
   try {
-    const res = await axios.put('/todos', { status });
+    const res = await axios.patch('/todos', { completed });
     todos = res.data;
     render();
   } catch (e) {
-    console.log(err);
+    console.log(e);
   }
 };
 
@@ -95,7 +95,7 @@ const clearCompleted = async () => {
     todos = res.data;
     render();
   } catch (e) {
-    console.log(err);
+    console.log(e);
   }
 };
 

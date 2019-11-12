@@ -74,13 +74,13 @@ const changeComplete = id => {
     .catch(err => console.error(err));
 };
 
-const completeAll = status => {
+const completeAll = completed => {
   fetch('/todos', {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
     },
-    body: JSON.stringify({ status })
+    body: JSON.stringify({ completed })
   })
     .then(res => res.json())
     .then(_todos => todos = _todos)
@@ -128,8 +128,8 @@ $todos.onchange = ({ target }) => {
 
 
 $completedAll.onclick = ({ target }) => {
-  const status = target.checked;
-  completeAll(status);
+  const completed = target.checked;
+  completeAll(completed);
 };
 
 $clearCompleted.onclick = () => {

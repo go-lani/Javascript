@@ -22,10 +22,9 @@ app.post('/todos', (req, res) => {
   res.send(todos);
 });
 
-app.put('/todos', (req, res) => {
-  const check = req.body.status;
-
-  todos = todos.map(todo => ({ ...todo, completed: check }));
+app.patch('/todos', (req, res) => {
+  const { completed } = req.body;
+  todos = todos.map(todo => ({ ...todo, completed }));
   res.send(todos);
 });
 

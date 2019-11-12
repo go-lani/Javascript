@@ -202,9 +202,9 @@ $todos.onclick = ({ target }) => {
 };
 
 $completedAll.onclick = ({ target }) => {
-  const status = target.checked;
+  const completed = target.checked;
 
-  ajax.put('/todos', { status }, render);
+  ajax.patch('/todos', { completed }, render);
 };
 
 $clearCompleted.onclick = () => {

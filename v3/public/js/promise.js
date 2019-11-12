@@ -72,6 +72,7 @@ const ajax = (() => {
 
 
 const getTodo = () => {
+  console.dir(ajax.get('/todos'));
   ajax.get('/todos')
     .then(_todos => todos = _todos)
     .then(render)
@@ -99,8 +100,8 @@ const changeComplete = id => {
     .catch(error => console.error(error));
 };
 
-const completeAll = status => {
-  ajax.put('/todos', { status })
+const completeAll = completed => {
+  ajax.patch('/todos', { completed })
     .then(_todos => todos = _todos)
     .then(render)
     .catch(error => console.error(error));
@@ -143,8 +144,8 @@ $todos.onchange = ({ target }) => {
 
 
 $completedAll.onclick = ({ target }) => {
-  const status = target.checked;
-  completeAll(status);
+  const completed = target.checked;
+  completeAll(completed);
 };
 
 $clearCompleted.onclick = () => {

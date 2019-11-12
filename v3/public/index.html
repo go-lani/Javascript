@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Todos 2.0</title>
+  <title>Todos 3.0</title>
   <link href="./css/style.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script defer src="./js/fetch.js"></script>
+  <script defer src="./js/ajax.js"></script>
 </head>
 <body>
   <div class="container">
     <h1 class="title">Todos</h1>
-    <div class="ver">2.0</div>
+    <div class="ver">3.0</div>
 
     <input class="input-todo" placeholder="What needs to be done?" autofocus>
 
@@ -33,6 +33,57 @@
         <strong class="active-todos">0</strong> items left
       </div>
     </footer>
+    <script>
+    // const ajax = (() => {
+    //   const req = (method, url, payload) => {
+    //     return new Promise((resolve, reject) => {
+    //       const xhr = new XMLHttpRequest();
+    //       xhr.open(method, url);
+    //       xhr.setRequestHeader('content-type', 'application/json');
+    //       xhr.send(JSON.stringify(payload));
+    //       xhr.onload = () => {
+    //         if (xhr.status === 200 || xhr.status === 201) {
+    //           resolve(JSON.parse(xhr.response));
+    //         }
+    //       };
+    //       xhr.onerror = () => {
+    //         reject(new Error(xhr.status));
+    //       };
+    //     });
+    //   };
+    //   return {
+    //     get(url) {
+    //       return req('GET', url);
+    //     },
+    //     post(url, payload) {
+    //       return req('POST', url, payload);
+    //     },
+    //     patch(url, payload) {
+    //       return req('PATCH', url, payload);
+    //     },
+    //     delete(url) {
+    //       return req('DELETE', url);
+    //     }
+    //   };
+    // })();
+
+    // ajax.get('/todos')
+    //   .then(todos => Math.max(...todos.map(todo => todo.id)))
+    //   .then(id => ajax.delete(`/todos/${id}`))
+    //   .then(console.log);
+    //   .catch(err => console.error(err));
+
+    // (async () => {
+    //   try {
+    //     let todos = await ajax.get('/todos');
+    //     const id = Math.max(...todos.map(todo => todo.id));
+    //     todos = await ajax.delete(`/todos/${id}`);
+    //     console.log(todos);
+    //   } catch(e) {
+    //     console.error(e);
+    //   }
+    // })();
+    </script>
   </div>
 </body>
 </html>
