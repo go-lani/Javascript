@@ -1,0 +1,56 @@
+{
+  "todos": [
+    {
+      "id": 2,
+      "content": "qdwqdqw",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "content": "dqwdwqdwq",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "content": "react",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "content": "react",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "content": "react",
+      "completed": false
+    },
+    {
+      "id": 7,
+      "content": "react",
+      "completed": false
+    },
+    {
+      "id": 45,
+      "content": "react",
+      "completed": false
+    },
+    {
+      "id": 46,
+      "content": "react",
+      "completed": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "choko",
+      "gender": "male"
+    },
+    {
+      "id": 2,
+      "name": "ddalgi",
+      "gender": "female"
+    }
+  ]
+}
