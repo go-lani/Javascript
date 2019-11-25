@@ -4,10 +4,13 @@
 // 단, 반드시 1자 이상의 문자열을 인자로 전달한다.
 
 function checkPalindrom(str) {
+  const originalStr = str.split('').join('');
+  const reverseStr = str.split('').reverse().join('');
 
+  originalStr === reverseStr ? console.log(true) : console.log(false);
 }
 
-// console.log(checkPalindrom('dad')); // true
-// console.log(checkPalindrom('mom')); // true
+console.log(checkPalindrom('dad')); // true
+console.log(checkPalindrom('mom')); // true
 console.log(checkPalindrom('palindrom')); // false
-// console.log(checkPalindrom('s')); // true
+console.log(checkPalindrom('s')); // true
