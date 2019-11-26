@@ -11,9 +11,14 @@ function uniq(array) {
 
   // return result;
 
+  // for문을 활용한 방법
+  const newArr = [];
   for (let i = 0; i < array.length; i++) {
-    console.log(array[i]);
+    if (newArr.indexOf(array[i]) === -1) {
+      newArr.push(array[i]);
+    }
   }
+  console.log(newArr);
 }
 
 console.log(uniq([2, 1, 2, 3, 4, 3, 4])); // [ 2, 1, 3, 4 ]
