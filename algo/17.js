@@ -11,8 +11,8 @@ function isHarshad(n) {
   return n % sum ? false : true;
 }
 
-// console.log(isHarshad(10)); // true
-// console.log(isHarshad(12)); // true
-// console.log(isHarshad(18)); // true
-// console.log(isHarshad(11)); // false
-// console.log(isHarshad(13)); // false
+console.log(isHarshad(10)); // true
+console.log(isHarshad(12)); // true
+console.log(isHarshad(18)); // true
+console.log(isHarshad(11)); // false
+console.log(isHarshad(13)); // false
