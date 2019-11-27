@@ -4,7 +4,9 @@
 
 function generateRange(from, to) {
   const res = [];
-
+  for (let i = from; i <= 15; i++) {
+    res.push(i);
+  }
   return res;
 }
 
