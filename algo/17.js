@@ -6,11 +6,13 @@
 // 예를 들어 n이 10, 12, 18이면 true를 리턴 11, 13이면 false를 리턴한다.
 
 function isHarshad(n) {
-
+  const str = (n + '').split('');
+  const sum = str.reduce((pre, cur) => +pre + +cur, 0);
+  return n % sum ? false : true;
 }
 
-console.log(isHarshad(10)); // true
-console.log(isHarshad(12)); // true
-console.log(isHarshad(18)); // true
-console.log(isHarshad(11)); // false
-console.log(isHarshad(13)); // false
+// console.log(isHarshad(10)); // true
+// console.log(isHarshad(12)); // true
+// console.log(isHarshad(18)); // true
+// console.log(isHarshad(11)); // false
+// console.log(isHarshad(13)); // false
