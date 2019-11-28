@@ -16,7 +16,7 @@ function toWeirdCase(s) {
       cnt % 2 ? newStr += strArr[i][j].toUpperCase() : newStr += strArr[i][j];
     }
   }
-  console.log(newStr.trim());
+  newStr.trim());
 }
 
 console.log(toWeirdCase('hello world'));    // 'HeLlO WoRlD'

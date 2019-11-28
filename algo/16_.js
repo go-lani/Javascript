@@ -4,7 +4,6 @@
 // 2 이상의 n이 입력되었을 때, n번째 피보나치 수를 반환하는 fibonacci 함수를 작성하라. 예를 들어 n = 3이라면 2를 반환한다.
 
 function fibonacci(n) {
-
 }
 
 // console.log(fibonacci(2)); // 1
