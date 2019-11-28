@@ -22,6 +22,12 @@ function adder(x, y) {
   }
 
   return sum;
+
+// 프로그래머스 인기 답
+//  function adder(x, y){
+//    var result = 0
+//    return (a+b)*(Math.abs(y-x)+1)/2;
+//  }
 }
 
 // console.log(adder(3, 5)); // 12
