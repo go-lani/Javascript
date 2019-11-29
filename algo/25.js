@@ -9,6 +9,6 @@ function digitSum(n) {
   return arr.reduce((pre, cur) => +pre + +cur, 0);
 }
 
-// console.log(digitSum(123));  // 6
-// console.log(digitSum(987));  // 24
-// console.log(digitSum(100000001));  // false
+console.log(digitSum(123));  // 6
+console.log(digitSum(987));  // 24
+console.log(digitSum(100000001));  // false
