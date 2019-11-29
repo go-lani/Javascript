@@ -4,7 +4,22 @@
 // 예를들어 [1, 3, 4, 8, 13, 17, 20, 23, 24]이 주어졌다면 결과값은 [[3, 4], [23, 24]]가 될 것이다.
 
 function findMinDistance(array) {
+  const minusValueArr = [];
+  const result = [];
 
+  array.reduce((pre, cur) => {
+    if (cur - pre > 0) minusValueArr.push(cur - pre);
+    return cur;
+  }, 1);
+
+  const minValue = Math.min(...minusValueArr);
+
+  array.reduce((pre, cur) => {
+    if (cur - pre === minValue) result.push([pre, cur]);
+
+    return cur;
+  }, 1);
+  console.log(result);
 }
 
 // 1차원 점의 배열
