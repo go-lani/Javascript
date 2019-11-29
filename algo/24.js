@@ -7,7 +7,10 @@
 // 예를 들어, [-1, 1, 3, -2, 2, 0]이 주어졌을 때, [-1, -2, 0, 1, 2, 3]를 반환한다.
 
 function specialSort(array) {
+  const newArr = array.slice();
+  newArr.sort((prev, next) => prev - next);
 
+  return newArr;
 }
 
 const testArray = [-1, 1, 3, -2, 2, 0];
