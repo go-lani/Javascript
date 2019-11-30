@@ -12,15 +12,18 @@ function findDuplicated(array) {
   // return result;
 
   // for문을 활용한 방법
-  const resultArr = [];
-  for (let i = 1; i < array.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (array[i] === array[j]) {
-        resultArr.push(array[j]);
-      }
-    }
-  }
-  return resultArr;
+  // const resultArr = [];
+  // for (let i = 1; i < array.length; i++) {
+  //   for (let j = 0; j < i; j++) {
+  //     if (array[i] === array[j]) {
+  //       resultArr.push(array[j]);
+  //     }
+  //   }
+  // }
+  // return resultArr;
+
+  // filter와 indexOf를 활용한 방법
+  return array.filter((cur, index) => array.indexOf(cur) !== index);
 }
 
 console.log(findDuplicated([1, 2, 3, 4, 1, 2, 3])); // [ 1, 2, 3 ]
