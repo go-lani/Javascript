@@ -1,15 +1,11 @@
-// 중복없는 배열
-// 길이가 n인 배열에 1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는지를 확인하려고 한다.
-// 1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는 경우 true를, 아닌 경우 false를 반환하도록 함수 isNotOverlapArray을 완성하라.
-// 단, 배열의 요소는 정수이다.
-// 예를 들어 주어진 배열이 [4, 1, 3, 2]이라면 true, [4, 1, 3] 또는 [1, 3]이라면 false를 반환한다.
+// 요일 구하기
+// 2016년 1월 1일은 금요일이다. 2016년 a월 b일은 무슨 요일일까?
+// 두 수 a, b를 입력받아 a월 b일이 무슨 요일인지 출력하는 getDayName 함수를 완성하라.
+// 요일의 이름은 일요일부터 토요일까지 각각 SUN, MON, TUE, WED, THU, FRI, SAT를 출력한다.
+// 예를 들어 a=5, b=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환한다.
 
-function isNotOverlapArray(array) {
-  return array.every((cur, index) => {
-    return cur <= array.length && array.indexOf(cur) === index;
-  });
+function getDayName(a, b) {
+
 }
 
-console.log(isNotOverlapArray([4, 1, 3, 2])); // true
-console.log(isNotOverlapArray([4, 1, 3]));    // false
-console.log(isNotOverlapArray([2, 2]));    // false
+console.log(getDayName(5, 24)); // TUE
