@@ -8,16 +8,21 @@ function getDayName(a, b) {
   const year = 2016;
   const month = a;
   const day = b;
+  const dayArr = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
   let days = null;
+  let count = 0;
 
   switch (month) {
     case 1: case 3: case 5: case 7: case 8: case 10: case 12:
       days = 31;
 
       for (let i = 1; i <= days; i++) {
-        console.log(i);
-      }
 
+        console.log(count);
+        if (month === a && day === i) result = dayArr[count];
+        count === 6 ? count = 0 : count++;
+
+      }
       break;
 
     case 4: case 6: case 9: case 11:
@@ -32,6 +37,8 @@ function getDayName(a, b) {
     default:
       console.log('Invalid month');
   }
+
+  return result;
 }
 
 console.log(getDayName(5, 24)); // TUE
