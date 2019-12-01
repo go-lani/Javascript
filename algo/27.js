@@ -5,9 +5,25 @@
 // 예를 들어 a=5, b=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환한다.
 
 function getDayName(a, b) {
-  const year = 2016;
   const dayArr = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
   const days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let count = 0;
+  let result = null;
+  for (let i = 0; i < days.length; i++) {
+
+    if (a - 1 !== 0 && i < a - 1) {
+      count += days[i];
+      for (let j = 1; j <= days[a - 1]; j++) {
+        count++;
+        console.log(j, b, count);
+        if (j === b) {
+          console.log(2, count);
+          result = dayArr[count % 7];
+        }
+      }
+    }
+  }
+  return result;
 }
 
-console.log(getDayName(9, 12)); // TUE
+console.log(getDayName(1, 2)); // TUE
