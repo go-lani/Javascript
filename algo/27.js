@@ -14,7 +14,7 @@ function getDayName(a, b) {
     count += days[i];
   }
   count += b;
-  day = count % 7;
+  day = (count - 1) % 7;
 
   return dayArr[day];
 }
