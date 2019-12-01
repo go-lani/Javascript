@@ -5,7 +5,33 @@
 // 예를 들어 a=5, b=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환한다.
 
 function getDayName(a, b) {
+  const year = 2016;
+  const month = a;
+  const day = b;
+  let days = null;
 
+  switch (month) {
+    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+      days = 31;
+
+      for (let i = 1; i <= days; i++) {
+        console.log(i);
+      }
+
+      break;
+
+    case 4: case 6: case 9: case 11:
+      days = 30;
+
+      break;
+
+    case 2:
+      days = ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+      break;
+
+    default:
+      console.log('Invalid month');
+  }
 }
 
 console.log(getDayName(5, 24)); // TUE
