@@ -15,13 +15,19 @@ function getDayName(a, b) {
   switch (month) {
     case 1: case 3: case 5: case 7: case 8: case 10: case 12:
       days = 31;
+      for (let i = 1; i < month + 1; i++) {
+        for (let j = 1; j <= days; j++) {
+          if (day === j) {
+            result = dayArr[count];
+            break;
+          } else {
+            count++;
 
-      for (let i = 1; i <= days; i++) {
-
-        console.log(count);
-        if (month === a && day === i) result = dayArr[count];
-        count === 6 ? count = 0 : count++;
-
+            if (count === 6) {
+              count = 0;
+            }
+          }
+        }
       }
       break;
 
@@ -41,4 +47,4 @@ function getDayName(a, b) {
   return result;
 }
 
-console.log(getDayName(5, 24)); // TUE
+console.log(getDayName(1, 5)); // TUE
