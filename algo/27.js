@@ -6,11 +6,8 @@
 
 function getDayName(a, b) {
   const year = 2016;
-  const month = a;
-  const day = b;
   const dayArr = ['FRI', 'SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU'];
-  let days = null;
-  let count = 0;
+  const days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 }
 
 console.log(getDayName(9, 12)); // TUE
