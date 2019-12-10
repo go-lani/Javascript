@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="count">0</h1>
+  <button type="button" id="plus">+1</button>
+  <button type="button" id="subtract">-1</button>
+  <script>
+    const $count = document.querySelector('#count');
+    const $plus = document.querySelector('#plus');
+    const $minus = document.querySelector('#subtract');
+
+    // 프로토타입과 생성자 함수
+    // const CreateCount = (function () {
+    //   let count = 0;
+
+    //   function CreateCount() {
+    //   }
+
+    //   CreateCount.prototype.increase = () => {
+    //     count++;
+    //     $count.textContent = count;
+    //   };
+
+    //   CreateCount.prototype.decrease = () => {
+    //     count--;
+    //     $count.textContent = count;
+    //   };
+
+    //   return CreateCount;
+    // }());
+
+    // const counter = new CreateCount();
+
+    // $plus.onclick = counter.increase;
+    // $minus.onclick = counter.decrease;
+  </script>
+</body>
+</html>
