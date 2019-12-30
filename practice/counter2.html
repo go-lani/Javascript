@@ -16,29 +16,29 @@
     const $minus = document.querySelector('#subtract');
 
     // 프로토타입과 생성자 함수
-    // const CreateCount = (function () {
-    //   let count = 0;
+    const CreateCount = (function () {
+      let count = 0;
 
-    //   function CreateCount() {
-    //   }
+      function CreateCount() {
+      }
 
-    //   CreateCount.prototype.increase = () => {
-    //     count++;
-    //     $count.textContent = count;
-    //   };
+      CreateCount.prototype.increase = () => {
+        count++;
+        $count.textContent = count;
+      };
 
-    //   CreateCount.prototype.decrease = () => {
-    //     count--;
-    //     $count.textContent = count;
-    //   };
+      CreateCount.prototype.decrease = () => {
+        count--;
+        $count.textContent = count;
+      };
 
-    //   return CreateCount;
-    // }());
+      return CreateCount;
+    }());
 
-    // const counter = new CreateCount();
+    const counter = new CreateCount();
 
-    // $plus.onclick = counter.increase;
-    // $minus.onclick = counter.decrease;
+    $plus.onclick = counter.increase;
+    $minus.onclick = counter.decrease;
   </script>
 </body>
 </html>
