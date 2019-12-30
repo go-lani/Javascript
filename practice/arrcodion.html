@@ -86,18 +86,6 @@
       color: #b63b4d;
     }
 
-    /* Show submenu */
-    .accordion li.active .submenu {
-      /*
-        height: 0 -> height: auto;는 transition이 동작하지 않는다.
-        max-height: 임의의 높이;를 지정하면 transition이 동작하지만 타이밍이 망가진다.
-        max-height: 1000px;과 max-height: 133px;을 비교해 보라!
-        height를 1000px으로 transition할 시간에 실제로는 133px정도만 transition하므로 여는 시간이 닫는 시간보다 빠르다.
-      */
-      /* max-height: 1000px; */
-      /* max-height: 133px; */
-    }
-
     .submenu {
       height: 0;
       overflow: hidden;
@@ -139,7 +127,6 @@
 
   <ul id="accordion" class="accordion">
     <li class="active">
-    <!-- <li> -->
       <div class="menu"><i class="fa fa-code"></i>Front-end<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><a href="#">HTML</a></li>
