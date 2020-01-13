@@ -21,6 +21,13 @@
       opacity: 0;
     }
 
+    .carousel2 {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      opacity: 0;
+    }
+
     .carousel-item-container {
       /* 수평 정렬 */
       display: flex;
@@ -92,21 +99,53 @@
     <button class="carousel-control prev">&laquo;</button>
     <button class="carousel-control next">&raquo;</button>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="carousel2">
+    <div class="carousel-item-container">
+      <div class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=1">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=2">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=3">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=4">
+        </a>
+      </div>
+    </div>
+    <button class="carousel-control prev">&laquo;</button>
+    <button class="carousel-control next">&raquo;</button>
+  </div>
   <script>
     class Carousel {
-      constructor() {
-        this.config = {
-          duration: 300,
-          easing: 'ease-out'
-        };
+      constructor(config) {
+        this.config = Carousel.mergeConfig(config);
 
-        this.carousel = document.querySelector('.carousel');
+        const { selector, duration, easing, infinite } = this.config;
+
+        this.carousel = document.querySelector(this.config.selector);
         this.container = this.carousel.querySelector('.carousel-item-container');
         this.item = this.carousel.querySelector('.carousel-item');
+        this.items = this.carousel.querySelectorAll('.carousel-item');
         this.prev = this.carousel.querySelector('.prev');
         this.next = this.carousel.querySelector('.next');
-        this.itemLength = this.carousel.querySelectorAll('.carousel-item').length;
         this.itemWidth = this.item.offsetWidth;
+        this.itemHeight = this.item.offsetHeight;
 
         this.offset = 0;
         this.currentIndex = 1;
@@ -117,11 +156,28 @@
         this.binding();
       }
 
+      static mergeConfig(config) {
+        const defaultConfig = {
+          selector: '.carousel',
+          duration: 300,
+          easing: 'ease-out',
+          infinite: true
+        };
+        return {...defaultConfig, ...config};
+      }
+
       init() {
-        this.carousel.style.width = this.item.offsetWidth + 'px';
-        this.carousel.style.height = this.item.offsetHeight + 'px';
+        this.carousel.style.width = this.itemWidth + 'px';
+        this.carousel.style.height = this.itemHeight + 'px';
         this.carousel.style.opacity = 1;
-        this.checkIndex();
+
+        if (this.config.infinite) {
+          this.insertClone();
+          this.offset = -this.itemWidth;
+          this.actionWithoutAnimation();
+        } else {
+          this.checkIndex();
+        }
       }
 
       binding() {
@@ -134,24 +190,54 @@
         this.action();
         this.currentIndex++;
         this.checkIndex();
+
+        if (this.isClone()) {
+          this.offset += this.itemWidth * this.items.length;
+          setTimeout(() => this.actionWithoutAnimation(), this.config.duration);
+          this.currentIndex = this.currentIndex - this.items.length;
+        }
       }
 
       prevItem() {
+        console.log(this.currentIndex);
         this.offset += this.itemWidth;
         this.action();
         this.currentIndex--;
         this.checkIndex();
+
+        if (this.isClone()) {
+          this.offset -= this.itemWidth * this.items.length;
+          setTimeout(() => this.actionWithoutAnimation(), this.config.duration);
+          this.currentIndex = this.currentIndex + this.items.length;
+        }
       }
 
       checkIndex() {
-        if (this.currentIndex === this.itemLength) {
-          this.next.classList.add('disabled');
+        if (this.currentIndex === this.items.length) {
+          if (!this.config.infinite) this.next.classList.add('disabled');
         } else if (this.currentIndex === 1) {
-          this.prev.classList.add('disabled');
+          if (!this.config.infinite) this.prev.classList.add('disabled');
         } else {
           this.prev.classList.remove('disabled');
           this.next.classList.remove('disabled');
         }
+      }
+
+      insertClone() {
+        const firstItem = this.items[0];
+        const lastItem = this.items[this.items.length - 1];
+
+        this.container.insertBefore(lastItem.cloneNode(true), this.container.firstChild);
+        this.container.appendChild(firstItem.cloneNode(true));
+      }
+
+      isClone() {
+        return this.currentIndex === 0 || this.currentIndex === this.items.length + 1;
+      }
+
+      actionWithoutAnimation() {
+        this.container.style.transition = 'none';
+        this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
       }
 
       action() {
@@ -162,6 +248,7 @@
 
     window.onload = function () {
       const carousel = new Carousel();
+      const carousel2 = new Carousel({selector: '.carousel2', infinite: false});
 
     };
   </script>
